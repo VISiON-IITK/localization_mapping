@@ -17,7 +17,7 @@
 		<remap from="/lidar_map" to="/map"/>
 	</node>-->
 	<node pkg="tf2_ros" type="static_transform_publisher" name="map_to_odom" args="0 0 0 0 0 0 map odom"/>
-	<node name="gmapping_node" pkg="gmapping" type ="slam_gmapping">
+	<!-- <node name="gmapping_node" pkg="gmapping" type ="slam_gmapping">
 		<param name="xmin" type="double" value="-20.0"/>
 		<param name="ymin" type="double" value="-20.0"/>
 		<param name="xmax" type="double" value="20.0"/>
@@ -29,8 +29,8 @@
 		<param name="angularUpdate" type="double" value="0.2"/>
 		<param name="temporalUpdate" type="double" value="1.0"/>
 		<remap from="/scan" to="/scan_1"/>
-	</node>
-
+	</node> -->
+	<include file="$(find cartographer_ros)/launch/backpack_2d.launch"/>
 	<param name="particles" type="int" value="500"/>
 	<param name="gmap_width" type="int" value="60"/>
 	<param name="gmap_height" type="int" value="60"/>
@@ -47,12 +47,12 @@
 	<!-- Starting the main path planning node -->
 	<param name="max_nodes" type="int" value="1000"/>			<!-- maximum required nodes in tree -->
 	<param name="max_iterations" type="int" value="100000"/>	<!-- maximum allowable iterations for CC-RRT -->
-	<param name="delta_step" type="double" value="0.5"/>		<!-- RRT step size, in metres -->
+	<param name="delta_step" type="double" value="1.0"/>		<!-- RRT step size, in metres -->
 	<param name="max_angle" type="double" value="20.0"/>		<!-- maximum desired turning angle, in degrees -->
-	<param name="vehicle_speed" type="double" value="0.05"/>	<!-- expected speed -->
-	<param name="vehicle_turn_rate" type="double" value="0.3"/>	
+	<param name="vehicle_speed" type="double" value="0.10"/>	<!-- expected speed -->
+	<param name="vehicle_turn_rate" type="double" value="0.25"/>	
 	<param name="publishing_freq" type="double" value="0.25"/>	<!-- expected turn rate -->
-	<rosparam param="goal_position">[0.0, 10.0]</rosparam>		<!-- goal co-ordinates (x, y) in m (in base_link) -->
+	<rosparam param="goal_position">[8.0, 0.0]</rosparam>		<!-- goal co-ordinates (x, y) in m (in base_link) -->
 	
 	<node name="rrt_planner_node" pkg="rrt_planner" type="rrt_planner_node" output="screen">
 		<remap from="odom" to="odometry/filtered"/>

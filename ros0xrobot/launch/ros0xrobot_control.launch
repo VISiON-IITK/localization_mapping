@@ -1,0 +1,7 @@
+<launch>
+
+<include file="$(find ros0xrobot)/launch/ros0xrobot_minimal.launch"/>
+
+<include file="$(find ros0xrobot)/launch/ros0xrobot_teleop.launch"/>
+
+</launch>

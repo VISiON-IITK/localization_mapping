@@ -2,7 +2,7 @@
 
 echo "[INFO] Launching mavros_node"
 roslaunch robot_localization sensor_fusion_0.launch &
-sleep 25
+sleep 5
 
 echo "[INFO] Launching robot_localization nodes"
 roslaunch robot_localization sensor_fusion_1.launch &

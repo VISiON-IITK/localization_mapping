@@ -1,3 +1,4 @@
+
 /*
  *  RPLIDAR ROS NODE
  *
@@ -42,7 +43,7 @@
 #define _countof(_Array) (int)(sizeof(_Array) / sizeof(_Array[0]))
 #endif
 
-#define DEG2RAD(x) ((x)*M_PI/180.)
+#define DEG2RAD(x) ((x)*M_PI/180.00)
 
 using namespace rp::standalone::rplidar;
 
@@ -74,6 +75,7 @@ void publish_scan(ros::Publisher *pub,
       scan_msg.angle_min =  M_PI - angle_min;
       scan_msg.angle_max =  M_PI - angle_max;
     }
+    
     scan_msg.angle_increment =
         (scan_msg.angle_max - scan_msg.angle_min) / (double)(node_count-1);
 
@@ -419,3 +421,4 @@ int main(int argc, char * argv[]) {
     RPlidarDriver::DisposeDriver(drv);
     return 0;
 }
+
